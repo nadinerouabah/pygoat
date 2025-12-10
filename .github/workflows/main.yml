@@ -1,29 +1,27 @@
-name: CI 
+name: CI
 
-on: 
- push: 
-  branches:
-    - main
+on:
+  push:
+    branches:
+      - main
 
-jobs: 
- sast_scan: 
-   name: Run_Bandit-Scan: 
-   runs-on: ubuntu-latest
-   steps:
-   - name: checkout code 
-     uses: action/checkout@v2
+jobs:
+  sast_scan:
+    name: Run_Bandit-Scan
+    runs-on: ubuntu-latest
 
-   - name: checkout code 
-     uses: action/checkout@v2 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-   - name: setup python 
-     uses: action/setup-python@v2
-     with: 
-       python-version: 3.8
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
 
-   - name: install Bandit 
-     run: pip install bandit
+      - name: Install Bandit
+        run: pip install bandit
 
-     
-   - name: Run Bandit scan
-     run:  bandit -r . 
+      - name: Run Bandit scan
+        run: bandit -r .
+
